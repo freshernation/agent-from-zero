@@ -60,17 +60,50 @@ finishes your thoughts is actively harmful for the next three weeks.
 
 ## 4. Get your own copy of the course
 
-Your instructor will give you the address of the course repository. On GitHub, use
-**Use this template → Create a new repository** to make your own copy, then clone
-**your** copy:
+You are not cloning the course repo. You are making **your own repo from it**, because
+by week eight it is your portfolio — eight weeks of commits with your name on them.
+
+1. Sign in to GitHub (create a free account if you do not have one — use a username you
+   would be happy to put on a CV).
+2. Go to **https://github.com/freshernation/agent-from-zero**
+3. Click the green **Use this template** button → **Create a new repository**.
+4. Name it `agent-from-zero`, leave it **Public**, click **Create**.
+
+Now clone the copy you just made. Replace `YOUR-USERNAME`:
 
 ```bash
+cd ~
+mkdir -p code
+cd code
 git clone https://github.com/YOUR-USERNAME/agent-from-zero.git
 cd agent-from-zero
 ```
 
-By week eight this repository is your portfolio — eight weeks of commits with your
-name on them.
+If `git` is not installed, macOS will offer to install it when you first type `git` —
+say yes. On Windows, install [Git for Windows].
+
+### Point at the course, so you can get fixes
+
+The course gets patched during the cohort — a test gets clearer, a day gets rewritten.
+Run this once, now, so those fixes can reach you:
+
+```bash
+git remote add upstream https://github.com/freshernation/agent-from-zero.git
+```
+
+When your instructor says a patch has shipped, pull it:
+
+```bash
+git pull upstream main
+```
+
+The **first** time only, that command will refuse and complain about unrelated
+histories. That is expected — your repo started from a template, so it has no ancestor
+in common with the course. Do it once with the flag, and never again:
+
+```bash
+git pull upstream main --allow-unrelated-histories
+```
 
 ---
 
@@ -177,5 +210,6 @@ does not.
 [Homebrew]: https://brew.sh
 [python.org/downloads]: https://www.python.org/downloads/
 [code.visualstudio.com]: https://code.visualstudio.com/
+[Git for Windows]: https://git-scm.com/download/win
 [platform.claude.com]: https://platform.claude.com/
 [platform.openai.com]: https://platform.openai.com/
