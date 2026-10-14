@@ -11,8 +11,8 @@ debugging: the description.
 ## Read first
 
 - [ ] Claude — [Tool use overview](https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview) · 15 min
-- [ ] Claude — [How to implement tool use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/implement-tool-use) — "Best practices for tool definitions" · 10 min
-- [ ] OpenAI — [Function calling](https://platform.openai.com/docs/guides/function-calling) — "Defining functions" · 10 min
+- [ ] Claude — [How to implement tool use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools) — "Best practices for tool definitions" · 10 min
+- [ ] OpenAI — [Function calling](https://developers.openai.com/api/docs/guides/function-calling) — "Defining functions" · 10 min
 
 ---
 

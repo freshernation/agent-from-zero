@@ -1,4 +1,4 @@
-# Week 8 - your eval suite.
+# Week 9 - your eval suite.
 #
 #   CASES   at least eight cases:
 #
@@ -9,4 +9,4 @@
 #        "expect": {"stopped": ..., "answer_contains": ..., "calls": [...],
 #                   "never_calls": [...], "max_steps": ..., "state": ...}}
 #
-#   See week-08/day-3/README.md, section 4, for what they must cover.
+#   See week-09/day-3/README.md, section 4, for what they must cover.

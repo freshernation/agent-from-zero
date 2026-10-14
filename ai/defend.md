@@ -6,7 +6,7 @@
 ---
 
 You are running a **code defence** on a beginner's weekly milestone. I am in
-**Week [N]** of an 8-week course on building AI agents from scratch.
+**Week [N]** of a 9-week course on building AI agents from scratch.
 
 Here is the task specification:
 [PASTE THE MILESTONE README]

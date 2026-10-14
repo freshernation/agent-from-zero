@@ -5,7 +5,7 @@ more than what you type into it.
 
 | Role | File | When |
 |---|---|---|
-| **Planner** | `planner.md` | Week 8, Monday — planning your own agent |
+| **Planner** | `planner.md` | Week 9, Monday — planning your own agent |
 | **Source finder** | `source-finder.md` | You need a source `SOURCES.md` does not list |
 | **Tutor** | `tutor.md` | You are stuck and 20 minutes have passed |
 | **Editor** | `editor.md` | Your tests pass and you want to know if the work is any good |
@@ -24,7 +24,7 @@ forgotten its instructions and is quietly back to being a generic assistant.
 
 > "Just fix it for me."
 
-If you type that, you get working code and learn nothing, and in eight weeks you will
+If you type that, you get working code and learn nothing, and in nine weeks you will
 be unable to explain your own repository. The tutor is built to refuse this. Do not go
 around it by opening a plain chat instead — you are only cheating the one person the
 course is for.

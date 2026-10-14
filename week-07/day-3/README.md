@@ -13,7 +13,7 @@ better or worse than yesterday?"*
 ## Read first
 
 - [ ] Anthropic — [Demystifying evals for AI agents](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents) · 30 min
-- [ ] Claude — [Define your success criteria](https://platform.claude.com/docs/en/test-and-evaluate/define-success) and [Develop test cases](https://platform.claude.com/docs/en/test-and-evaluate/develop-tests) · 20 min
+- [ ] Claude — [Define success criteria and build evaluations](https://platform.claude.com/docs/en/test-and-evaluate/develop-tests) · 20 min
 
 ---
 

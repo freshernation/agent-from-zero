@@ -8,7 +8,7 @@
 ## Read first
 
 - [ ] Claude — [Multiple conversational turns](https://platform.claude.com/docs/en/build-with-claude/working-with-messages#multiple-conversational-turns) · 5 min
-- [ ] OpenAI — [Conversation state](https://platform.openai.com/docs/guides/conversation-state) — the "manually manage" section · 10 min
+- [ ] OpenAI — [Conversation state](https://developers.openai.com/api/docs/guides/conversation-state) — the "manually manage" section · 10 min
 
 ---
 

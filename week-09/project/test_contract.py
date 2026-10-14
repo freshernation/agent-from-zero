@@ -1,7 +1,7 @@
-"""Week 8 - the contract every capstone agent meets, whatever it is about.
+"""Week 9 - the contract every capstone agent meets, whatever it is about.
 
-Run me:  pytest week-08/project -v
-Or one part:  pytest week-08/project -k Tools -v      (Spec, Tools, Agent, Evals, Docs)
+Run me:  pytest week-09/project -v
+Or one part:  pytest week-09/project -k Tools -v      (Spec, Tools, Agent, Evals, Docs)
 """
 
 import inspect

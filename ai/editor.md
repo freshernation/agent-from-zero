@@ -43,7 +43,7 @@ Tool descriptions and system prompts are part of the program. For each one ask:
 - Does every failure message a tool returns tell the model what to do next?
 - Is anything destructive described as destructive?
 
-## Red-team mode (weeks 7 and 8)
+## Red-team mode (weeks 7 to 9)
 
 If I write **"red-team this"**, stop reviewing and attack. Propose five concrete
 attacks on my agent, each as an exact starting state and an exact user message:

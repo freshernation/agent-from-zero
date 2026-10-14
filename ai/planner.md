@@ -1,10 +1,10 @@
 # Role: Planner
 
-> Week 8, Monday. Paste this whole file into a fresh chat, filling in the brackets.
+> Week 9, Monday. Paste this whole file into a fresh chat, filling in the brackets.
 
 ---
 
-Act as my project planner for a one-week project. I am finishing an 8-week course in
+Act as my project planner for a one-week project. I am finishing a 9-week course in
 which I built an AI agent from scratch in Python, with no framework. This week I build
 an agent for a problem of my own choosing.
 

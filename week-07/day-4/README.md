@@ -8,7 +8,7 @@
 ## Read first
 
 - [ ] Claude — [Errors](https://platform.claude.com/docs/en/api/errors) and [Rate limits](https://platform.claude.com/docs/en/api/rate-limits) · 15 min
-- [ ] OpenAI — [Rate limits](https://platform.openai.com/docs/guides/rate-limits) — "Retrying with exponential backoff" · 10 min
+- [ ] OpenAI — [Rate limits](https://developers.openai.com/api/docs/guides/rate-limits) — "Retrying with exponential backoff" · 10 min
 
 ---
 

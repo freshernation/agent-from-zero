@@ -1,6 +1,6 @@
 """Score your agent against a real model. Run from the repo root:
 
-    python3 week-08/project/run_evals.py
+    python3 week-09/project/run_evals.py
 
 Needs AGENT_PROVIDER set to claude or openai in .env. Uses its own data file
 (eval_data.json), so your real data is not touched.

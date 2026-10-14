@@ -11,7 +11,7 @@ in this course *acts*.
 ## Read first
 
 - [ ] Claude — [How tool use works](https://platform.claude.com/docs/en/agents-and-tools/tool-use/how-tool-use-works) · 10 min
-- [ ] OpenAI — [Function calling](https://platform.openai.com/docs/guides/function-calling) — "The tool calling flow" · 10 min
+- [ ] OpenAI — [Function calling](https://developers.openai.com/api/docs/guides/function-calling) — "The tool calling flow" · 10 min
 
 ---
 

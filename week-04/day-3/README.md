@@ -8,7 +8,7 @@
 ## Read first
 
 - [ ] Claude — [Pricing](https://platform.claude.com/docs/en/about-claude/pricing) — the model table only · 5 min
-- [ ] OpenAI — [Pricing](https://platform.openai.com/docs/pricing) — the model table only · 5 min
+- [ ] OpenAI — [Pricing](https://developers.openai.com/api/docs/pricing) — the model table only · 5 min
 - [ ] Claude — [Increase output consistency](https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/increase-consistency) · 10 min
 
 ---

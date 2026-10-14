@@ -12,7 +12,7 @@ different names for the same things.
 ## Read first
 
 - [ ] Claude — [Messages API reference](https://platform.claude.com/docs/en/api/messages) — the request body and the response · 15 min
-- [ ] OpenAI — [Chat Completions API reference](https://platform.openai.com/docs/api-reference/chat/create) — the request body and the response · 15 min
+- [ ] OpenAI — [Chat Completions API reference](https://developers.openai.com/api/reference/resources/chat) — the request body and the response · 15 min
 - [ ] `llm/wire.py` in this repo — **after** you finish the exercises, not before
 
 ---

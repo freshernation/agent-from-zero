@@ -1,69 +1,64 @@
-# Week 8 — Your agent
+# Week 8 — Harden it
 
 > **Destination**
-> Design, build, measure and defend an agent for a problem **you** chose — and leave
-> with a repository you can put in front of an employer.
+> A Desk that survives a long conversation, a note that gives orders, and a careless
+> change — with a number for each.
 
-For seven weeks the problem was notes, because notes are boring and the loop was the
-lesson. The loop is yours now. This week the problem is whatever you pick.
+Last week you made Desk safe enough to trust with your own notes file. This week it
+gets one new ability, and that ability is the reason for the week: **it can send a
+note to somebody.**
 
-There is no new material. There is a blank folder, a contract, and a Friday.
+Until now the worst Desk could do was damage a file on your laptop. Now something can
+leave.
 
 ---
 
 ## The week
 
-| Day | Folder | What you produce |
+| Day | Folder | What you'll be able to do |
 |---|---|---|
-| Mon | `day-1/` | A one-page spec: what it does, what it must never do, and how you will know |
-| Tue | `day-2/` | The tools, working and tested, with **no model anywhere near them** |
-| Wed | `day-3/` | The agent wired up, and a first eval score against a real model |
-| Thu | `day-4/` | Three attacks on your own agent, the fixes, and the write-up |
-| Fri | `project/` | **Project 3** — demo and defence |
-
-All of the work goes in `project/`. The day folders hold only that day's instructions.
+| Mon | `day-1/` | See what is filling the model's window, and shrink it without breaking the conversation |
+| Tue | `day-2/` | Stop a note leaving for an address nobody chose — in code, not in the prompt |
+| Wed | `day-3/` | Attack your own agent on purpose, and report how often an attack works |
+| Thu | `day-4/` | Check *which* note a tool was aimed at, and catch a change that breaks something that worked |
+| Fri | `milestone/` | Ship a hardened Desk, with a threat model and the numbers |
 
 ---
 
-## The contract
+## Four ways last week's Desk falls short
 
-`project/test_contract.py` checks the shape of what you build — not what it is about.
-Whatever your agent does, it must have:
+One per day. None of them is a bug in what you wrote.
 
-- at least **four tools**, one of which **changes** something;
-- every tool returning a sentence, even when handed nonsense;
-- its data in **one JSON file** whose location comes from `DATA_FILE`;
-- a decision, in code, about which tools are **dangerous**;
-- at least **eight eval cases**, with a real report;
-- a spec, and a README a stranger could follow.
+1. **It forgets by throwing away.** Week 7's `trim` drops the oldest turns whole. The
+   title of the note you saved at the start is gone with them.
+2. **Its gate asks a person, and a person says yes.** Approval works for a delete you
+   can see. It does not work when a note has quietly changed where something is sent.
+3. **You tried three attacks by hand.** Three is not a measurement, and "it did not
+   work when I tried" is week 7's "it worked when I tried", pointing the other way.
+4. **Its evals pass a run that deleted the wrong note.** They check that
+   `delete_note` was called. They do not check what it was called on.
 
 ---
 
-## Choosing a problem
+## One new piece of Python
 
-A good capstone agent:
+Tuesday needs **a function that builds a function**. You have passed functions as
+arguments since week 7. This is the other half: writing a function whose job is to
+return one, with something remembered inside it. It is the last new idea in the
+course, and it is ten lines.
 
-- acts on **something you can inspect** — a JSON file of books, workouts, expenses,
-  flashcards, plants, job applications, recipes;
-- needs **more than one step** for its interesting requests;
-- has at least one action you would **not** want done by accident.
+---
 
-Leave for after the course: sending email or messages, running shell commands,
-browsing the web, touching anyone's real accounts, spending money. Not because they
-are hard — because a mistake in them is not confined to your own laptop, and you have
-had exactly one week of practice at preventing mistakes.
+## Given to you
+
+`kit.py`, with one more tool than last week: `share_note(title, to)`. Nothing is
+really sent. A shared note is written to an **outbox** file, so you — and the tests —
+can see exactly what went out and to whom.
 
 ---
 
 ## Outside-view question
 
-> *How does an architect decide what to leave out of a small house, and what should
-> you leave out of a one-week agent?*
-
----
-
-## What Friday is
-
-A ten-minute demo against a real model, then a defence. Not of the code — of the
-**decisions**. Why these tools. Why that one is gated. What your evals do not cover.
-What you would not let it do.
+> *A hospital pharmacist will hand over most medicines on a doctor's signature, and
+> some only after a second pharmacist has checked. Who decided which are which, and
+> what would you want to know before putting a tool on your agent's second list?*

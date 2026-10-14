@@ -10,7 +10,7 @@
 Read the one for the provider you will use. Skim the other on Thursday.
 
 - [ ] Claude — [Working with the Messages API](https://platform.claude.com/docs/en/build-with-claude/working-with-messages) · 15 min
-- [ ] OpenAI — [Text generation](https://platform.openai.com/docs/guides/text) · 15 min
+- [ ] OpenAI — [Text generation](https://developers.openai.com/api/docs/guides/text) · 15 min
 
 Both pages use the provider's own package. You use `llm` instead; the ideas are
 identical and Thursday shows you the mapping.

@@ -61,7 +61,7 @@ finishes your thoughts is actively harmful for the next three weeks.
 ## 4. Get your own copy of the course
 
 You are not cloning the course repo. You are making **your own repo from it**, because
-by week eight it is your portfolio — eight weeks of commits with your name on them.
+by week nine it is your portfolio — nine weeks of commits with your name on them.
 
 1. Sign in to GitHub (create a free account if you do not have one — use a username you
    would be happy to put on a CV).

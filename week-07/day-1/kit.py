@@ -9,7 +9,7 @@ exactly one thing: the loop.
     run_calls(tools, tool_calls)   one "tool" message per call, in order
 
 `tools` is passed in rather than read from a global, so the same two functions
-work for any dispatch table - including the one you design in week 8.
+work for any dispatch table - including the one you design in week 9.
 
 The notes live in the file named by the NOTES_FILE environment variable, or
 notes.json in the current folder if that is not set.

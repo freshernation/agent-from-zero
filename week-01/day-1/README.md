@@ -95,7 +95,7 @@ Print exactly three lines:
 3. One line on why you are doing this course
 
 Line 1 is checked exactly. Write something true on line 3; you will read it again in
-week 8 when it is hard.
+week 9 when it is hard.
 
 ### 2. `card.py`
 

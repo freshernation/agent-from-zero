@@ -1,6 +1,6 @@
 # Agent From Zero
 
-Eight weeks from your first line of Python to an AI agent you designed, built,
+Nine weeks from your first line of Python to an AI agent you designed, built,
 measured and can explain — with no framework underneath it.
 
 You do not need to have programmed before. You do need about four hours a day.
@@ -30,7 +30,7 @@ From week 4 the AI may write code with you, and the rule that replaces it is:
 
 ---
 
-## The eight weeks
+## The nine weeks
 
 | Week | | Milestone |
 |---|---|---|
@@ -41,7 +41,8 @@ From week 4 the AI may write code with you, and the rule that replaces it is:
 | 5 | Tools | The assistant can use your notes functions — one step at a time |
 | 6 | **The loop** | **Project 2** — an agent from scratch, and the write-up |
 | 7 | Trust it | The agent gated, remembering, budgeted — and measured with evals |
-| 8 | Your agent | **Project 3** — an agent for a problem you chose, defended |
+| 8 | Harden it | The agent can share a note — and cannot be talked into sharing the wrong one |
+| 9 | Your agent | **Project 3** — an agent for a problem you chose, defended |
 
 Week 6 is the keystone. Weeks 1–3 exist so that week 6 contains nothing unfamiliar:
 the loop is week 1, the message list is week 2, the tools are weeks 2 and 3.
@@ -60,7 +61,7 @@ week 4   the if-ladder is replaced by a model
 week 5   the model is handed the functions
 week 6   the model is allowed to go round more than once        <- an agent
 week 7   ...and is stopped from doing damage, and measured
-week 8   the notes are replaced by a problem of your own
+week 9   the notes are replaced by a problem of your own
 ```
 
 ---
@@ -107,7 +108,7 @@ judges both on Friday. Every test fails before you write anything.
 | Path | What it is |
 |---|---|
 | `SETUP.md` | Day zero. Do this before anything else. |
-| `week-01/` … `week-08/` | One folder per week: four days, a milestone, a fence, a defence |
+| `week-01/` … `week-09/` | One folder per week: four days, a milestone, a fence, a defence |
 | `llm/` | The model layer. Read it in week 4. |
 | `ai/` | Your AI roles — planner, source finder, tutor, editor, outside view, defend |
 | `SOURCES.md` | Every reading in the course, and why it was chosen |

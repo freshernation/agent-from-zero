@@ -11,7 +11,7 @@ differ most — and where, if you ever debug a real agent, you will be reading r
 ## Read first
 
 - [ ] Claude — [Handle tool calls](https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls) — the JSON examples · 10 min
-- [ ] OpenAI — [Function calling](https://platform.openai.com/docs/guides/function-calling) — the JSON examples · 10 min
+- [ ] OpenAI — [Function calling](https://developers.openai.com/api/docs/guides/function-calling) — the JSON examples · 10 min
 - [ ] `llm/wire.py` — **after** the exercises
 
 ---
