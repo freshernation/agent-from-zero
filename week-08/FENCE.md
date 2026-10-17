@@ -8,6 +8,7 @@
 - A dictionary shared between two functions so one can see what the other did
   (`state = {"tainted": False}`)
 - A second, separate model call inside your own code (`summarise`)
+- The provider's token counter, through `model.count_tokens` — free, and not a model call
 - `round(number, 2)`
 - Writing and reading a small JSON file of your own (`baseline.json`)
 

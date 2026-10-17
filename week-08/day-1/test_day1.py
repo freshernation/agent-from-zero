@@ -5,7 +5,10 @@ Run me:  pytest week-08/day-1 -v
 
 import pytest
 
-from llm import FakeModel, say
+import importlib.util
+from pathlib import Path
+
+from llm import FakeModel, ModelError, say
 
 
 @pytest.fixture
@@ -187,3 +190,50 @@ class TestShouldCompact:
         assert context.should_compact(500, 1000) is True
         assert context.should_compact(499, 1000) is False
         assert context.should_compact(700, 1000, fraction=0.8) is False
+
+
+def desk_schemas():
+    """The six tool descriptions Desk sends on every call (week 8 day 2's kit.py)."""
+    path = Path(__file__).resolve().parent.parent / "day-2" / "kit.py"
+    spec = importlib.util.spec_from_file_location("week8_kit", path)
+    kit = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(kit)
+    return kit.SCHEMAS
+
+
+class Unreachable:
+    def count_tokens(self, messages, system=None, tools=None):
+        raise ModelError("Could not reach the provider.", retryable=True)
+
+
+class TestWhatIsReallySent:
+    def test_tools_size(self, context):
+        assert context.tools_size(None) == 0 and context.tools_size([]) == 0
+        assert context.tools_size(desk_schemas()) == 565
+
+    def test_the_tool_descriptions_outweigh_the_conversation(self, context):
+        """Desk's six tool descriptions are 565 tokens - more than this whole
+        conversation's messages - and sizes() counts none of them."""
+        assert context.tools_size(desk_schemas()) > context.sizes(conversation())["total"]
+
+    def test_estimate_counts_everything_sent(self, context):
+        found = context.estimate(conversation(), system="s" * 400, tools=desk_schemas())
+        assert found == context.sizes(conversation())["total"] + 100 + 565
+
+    def test_counted_by_the_provider(self, context):
+        model = FakeModel()
+        used = context.window_used(model, conversation(), system="Be brief.", tools=desk_schemas())
+        assert used == {"tokens": FakeModel().count_tokens(conversation(), system="Be brief.",
+                                                          tools=desk_schemas()), "source": "counted"}
+        assert len(model.counted) == 1 and model.call_count == 0, "Counting is not a model call."
+
+    def test_the_counter_sees_the_tool_calls_the_estimate_misses(self, context):
+        counted = context.window_used(FakeModel(), conversation())["tokens"]
+        assert counted > context.estimate(conversation())
+
+    def test_falls_back_when_the_counter_is_unreachable(self, context):
+        used = context.window_used(Unreachable(), conversation(), tools=desk_schemas())
+        assert used == {"tokens": context.estimate(conversation(), tools=desk_schemas()), "source": "estimated"}
+
+    def test_falls_back_when_there_is_no_counter(self, context):
+        assert context.window_used(object(), conversation())["source"] == "estimated"

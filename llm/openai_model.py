@@ -7,7 +7,7 @@ choose the model.
 import os
 
 from llm.fake import ModelError
-from llm.wire import openai_messages, openai_reply, openai_tool
+from llm.wire import openai_input, openai_messages, openai_reply, openai_tool
 
 DEFAULT_MODEL = "gpt-5-mini"
 
@@ -31,6 +31,25 @@ class OpenAIModel:
             request["max_completion_tokens"] = max_tokens
 
         return openai_reply(self._send(request))
+
+    def count_tokens(self, messages, system=None, tools=None):
+        """How many input tokens this exact request would be, counted by OpenAI.
+
+        OpenAI's counter speaks its Responses API, so the conversation is sent in
+        that shape (llm/wire.py, openai_input) - the count is for the same content.
+        """
+        import openai
+
+        request = {"model": self.name, "input": openai_input(messages)}
+        if system:
+            request["instructions"] = system
+        if tools:
+            request["tools"] = [{"type": "function", "name": s["name"], "description": s["description"],
+                                 "parameters": s["parameters"]} for s in tools]
+        try:
+            return self._client.responses.input_tokens.count(**request).input_tokens
+        except openai.APIError as error:
+            raise ModelError(f"OpenAI could not count the tokens: {error}") from error
 
     def _send(self, request):
         import openai

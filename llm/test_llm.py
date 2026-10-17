@@ -328,3 +328,46 @@ class TestOpenAIModel:
         client = _Recorder(_openai_response(None, [call], "tool_calls"))
         reply = OpenAIModel(client=client).chat([{"role": "user", "content": "x"}])
         assert reply["tool_calls"][0]["args"] == {"_unparsed_arguments": '{"title": '}
+
+
+class TestCountTokens:
+    def test_fake_counts_what_is_sent(self):
+        model = FakeModel()
+        messages = [{"role": "user", "content": "a" * 40}]
+        assert model.count_tokens(messages) == 10
+        assert model.count_tokens(messages, system="b" * 40) == 20
+        tools = [{"name": "x", "description": "d", "parameters": {"type": "object", "properties": {}}}]
+        assert model.count_tokens(messages, tools=tools) > 10
+        assert len(model.counted) == 3 and model.call_count == 0, "Counting is not a model call."
+
+    def test_claude_asks_the_counting_endpoint(self):
+        from llm.claude_model import ClaudeModel
+
+        class Counter:
+            def __init__(self):
+                self.request = None
+
+            def count_tokens(self, **request):
+                self.request = request
+                return type("Count", (), {"input_tokens": 1234})()
+
+        class Client:
+            def __init__(self):
+                self.messages = Counter()
+
+        client = Client()
+        model = ClaudeModel(client=client)
+        tools = [{"name": "x", "description": "d", "parameters": {"type": "object", "properties": {}}}]
+        assert model.count_tokens([{"role": "user", "content": "hi"}], system="s", tools=tools) == 1234
+        assert client.messages.request["system"] == "s" and client.messages.request["tools"][0]["name"] == "x"
+
+    def test_openai_input_shape(self):
+        from llm.wire import openai_input
+        items = openai_input([
+            {"role": "user", "content": "hi"},
+            {"role": "assistant", "content": "", "tool_calls": [{"id": "c1", "name": "f", "args": {"a": 1}}]},
+            {"role": "tool", "tool_call_id": "c1", "content": "done"},
+        ])
+        assert items == [{"role": "user", "content": "hi"},
+                         {"type": "function_call", "call_id": "c1", "name": "f", "arguments": '{"a": 1}'},
+                         {"type": "function_call_output", "call_id": "c1", "output": "done"}]

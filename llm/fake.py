@@ -21,6 +21,7 @@ first time it meets the real thing.
 """
 
 import copy
+import json
 
 from llm.wire import make_reply
 
@@ -94,6 +95,7 @@ class FakeModel:
         self._unscripted = script is None
         self._position = 0
         self.requests = []
+        self.counted = []
 
     def chat(self, messages, system=None, tools=None, max_tokens=None):
         check_messages(messages)
@@ -126,6 +128,19 @@ class FakeModel:
         if isinstance(item, Exception):
             raise item
         return copy.deepcopy(item)
+
+    def count_tokens(self, messages, system=None, tools=None):
+        """A stand-in for the provider's counter: every character a real request
+        would carry - message text, tool calls, the system prompt and the tool
+        descriptions - divided by four. Deterministic, so tests can rely on it."""
+        check_tools(tools)
+        characters = len(system or "") + (len(json.dumps(tools)) if tools else 0)
+        for message in messages:
+            characters += len(message.get("content") or "")
+            if message.get("tool_calls"):
+                characters += len(json.dumps(message["tool_calls"]))
+        self.counted.append({"messages": len(messages), "system": system, "tools": len(tools or [])})
+        return characters // 4
 
     @property
     def call_count(self):

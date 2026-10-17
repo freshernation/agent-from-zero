@@ -51,6 +51,24 @@ class ClaudeModel:
 
         return claude_reply(response)
 
+    def count_tokens(self, messages, system=None, tools=None):
+        """How many input tokens this exact request would be, counted by Claude.
+
+        Free to call, and it counts what an estimate cannot see: the system
+        prompt, every tool description, and the message formatting.
+        """
+        import anthropic
+
+        request = {"model": self.name, "messages": claude_messages(messages)}
+        if system:
+            request["system"] = system
+        if tools:
+            request["tools"] = [claude_tool(schema) for schema in tools]
+        try:
+            return self._client.messages.count_tokens(**request).input_tokens
+        except anthropic.APIError as error:
+            raise ModelError(f"Claude could not count the tokens: {error}") from error
+
     def _send(self, request):
         import anthropic
 

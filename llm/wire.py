@@ -204,6 +204,29 @@ def openai_messages(messages, system=None):
     return out
 
 
+def openai_input(messages):
+    """Neutral messages -> the item list OpenAI's Responses API takes.
+
+    Only token counting uses it. A tool call becomes a function_call item and its
+    result a function_call_output item, matched by call_id.
+    """
+    items = []
+    for message in messages:
+        role = message["role"]
+        if role == "user":
+            items.append({"role": "user", "content": message["content"]})
+        elif role == "assistant":
+            if message.get("content"):
+                items.append({"role": "assistant", "content": message["content"]})
+            for call in message.get("tool_calls", []):
+                items.append({"type": "function_call", "call_id": call["id"],
+                              "name": call["name"], "arguments": json.dumps(call["args"])})
+        elif role == "tool":
+            items.append({"type": "function_call_output", "call_id": message["tool_call_id"],
+                          "output": message["content"]})
+    return items
+
+
 def openai_reply(response):
     """OpenAI's response object -> the neutral reply."""
     choice = response.choices[0]

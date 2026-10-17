@@ -41,3 +41,18 @@
 #
 #   should_compact(used, window, fraction=0.5)
 #       True when `used` is at least that fraction of the window
+#
+#   tools_size(tools)
+#       len(json.dumps(tools)) // 4 - the tool descriptions, as the estimate would
+#       count them. 0 for no tools.
+#
+#   estimate(messages, system=None, tools=None)
+#       sizes(messages)["total"], plus tokens(system), plus tools_size(tools):
+#       everything a request carries, not just the conversation
+#
+#   window_used(model, messages, system=None, tools=None)
+#       ask the provider: {"tokens": model.count_tokens(messages, system=system,
+#       tools=tools), "source": "counted"}. If the model has no count_tokens, or it
+#       raises ModelError, fall back to {"tokens": estimate(...), "source": "estimated"}.
+#       Counting is free and is not a model call; the fallback is for when the
+#       counter is unreachable, not a reason to skip it.

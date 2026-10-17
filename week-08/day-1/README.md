@@ -36,6 +36,19 @@ After every real model call you also get the true number, for free:
 `reply["usage"]["input"]` is exactly how many tokens you just sent. The estimate is
 for deciding in advance. The usage is for checking you were right.
 
+### 1b. Count what is really sent, before you send it
+
+`sizes` counts the conversation. A request carries more: the system prompt, and every
+tool description, on every call. Desk's six tool descriptions come to **565 tokens** —
+more than the whole conversation above — and `sizes` sees none of them.
+
+Both providers will count a request for you before you send it, for free: Claude's
+`messages.count_tokens`, OpenAI's `responses.input_tokens.count`. The course's models
+expose it as `model.count_tokens(messages, system=..., tools=...)`, and the fake one
+counts every character it would send, divided by four. Use the provider's number when
+you can, and fall back to your estimate — of **everything** sent — when the counter is
+unreachable.
+
 ### 2. Shorten old results. Never drop them
 
 A search result from ten steps ago has done its job. Keep the first two hundred
@@ -105,6 +118,9 @@ Write `context.py`:
 | `summarise(model, messages)` | one model call — the transcript as a single user message, `system=SUMMARY_SYSTEM`, no tools — and its text |
 | `compact(model, messages, keep_turns=3)` | no more than `keep_turns` turns: a copy, and no model call. Otherwise the kept turns as copies, without keys starting `_`, with `Summary of the conversation so far: <summary>` and a blank line put in front of the first kept message's content |
 | `should_compact(used, window, fraction=0.5)` | `True` when `used` is at least that fraction of the window |
+| `tools_size(tools)` | `len(json.dumps(tools)) // 4`, 0 for none |
+| `estimate(messages, system=None, tools=None)` | the conversation, the system prompt and the tool descriptions, together |
+| `window_used(model, messages, system=None, tools=None)` | `{"tokens", "source"}`: the provider's count when it answers, your estimate when it does not |
 
 ---
 
